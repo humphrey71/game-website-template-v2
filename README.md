@@ -1,3 +1,26 @@
+# 项目初始化指引
+
+## 一键创建新项目
+
+1. 首先配置 GitHub Personal Access Token（仅需执行一次）：
+   - 访问 https://github.com/settings/tokens 创建 token
+   - 勾选 `repo` 权限
+   - 复制生成的 token，执行以下命令：
+```bash
+git config --global github.token YOUR_TOKEN
+```
+
+2. 在新项目目录下执行以下命令：
+```powershell
+$token = git config --global --get github.token; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/humphrey71/game-website-template-v2/master/init-project.bat" -Headers @{"Authorization"="token $token"} -OutFile "$env:TEMP\init-project.bat" ; if ($?) { & "$env:TEMP\init-project.bat" ; if ($?) { Remove-Item "$env:TEMP\init-project.bat" } }
+```
+
+对于 CMD 用户：
+```batch
+for /f "tokens=*" %a in ('git config --global github.token') do curl -H "Authorization: token %a" -s https://raw.githubusercontent.com/humphrey71/game-website-template-v2/master/init-project.bat -o "%TEMP%\init-project.bat" && "%TEMP%\init-project.bat" && del "%TEMP%\init-project.bat"
+```
+
+
 # FaWeb游戏站代码模板
 当前项目用于 Faweb(https://fafafa.ai) 在线一站式出海游戏网站制作工具所使用的代码模板。
 
