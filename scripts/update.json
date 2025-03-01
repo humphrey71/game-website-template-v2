@@ -1,4 +1,213 @@
 {
+    "2025-02-26 17": {
+        "version": "2.0.20",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "调整iframe默认高度",
+            "调整全屏、分享按钮排放位置"
+        ],
+        "modify": [
+            "app/[locale]/(public)/views/IframeActions.tsx",
+            "app/[locale]/(public)/views/IframeSection.tsx",
+            "app/[locale]/(public)/views/LazyIframe.tsx"
+        ]
+    },
+    "2025-02-26 11": {
+        "version": "2.0.19",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "修复了游戏详情页面标题没有显示的问题",
+            "优化在手机端下显示的样式（调整了游戏iframe大小、文字大小等细节）"
+        ],
+        "modify": [
+            "app/[locale]/(public)/views/Comments.tsx",
+            "app/[locale]/(public)/views/FAQs.tsx",
+            "app/[locale]/(public)/views/IframeSection.tsx",
+            "app/[locale]/(public)/views/LazyIframe.tsx",
+            "lib/components/navbar.tsx"
+        ]
+    },
+    "2025-02-26": {
+        "version": "2.0.18",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "修复游戏详情页面标题获取值得方式不正确问题"
+        ],
+        "modify": [
+            "lib/components/games-template/page.tsx"
+        ]
+    },
+    "2025-02-25": {
+        "version": "2.0.17",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "优化多个页面组件和布局，解决盒子模板分类切换多语言后无法加载游戏问题",
+            "移动端下侧边栏默认隐藏，调整游戏页面布局",
+            "解决分类游戏列表没有侧边栏的问题",
+            "修改隐私政策和服务条款页面在深色模式下的背景颜色，解决文字显示空白问题"
+        ],
+        "modify": [
+            "app/[locale]/(public)/page.tsx",
+            "app/[locale]/(public)/privacy-policy/page.tsx",
+            "app/[locale]/(public)/terms-of-services/page.tsx",
+            "app/[locale]/(public)/views/FAQs.tsx",
+            "app/[locale]/(public)/views/GameRecommendationCard.tsx",
+            "app/[locale]/(public)/views/IframeActions.tsx",
+            "app/[locale]/(public)/views/IframeSection.tsx",
+            "app/[locale]/(public)/views/LazyIframe.tsx",
+            "lib/components/footer.tsx",
+            "lib/components/games-template/c/[[...]]/page.tsx",
+            "lib/components/games-template/page.tsx",
+            "lib/components/layout/AppLayout.tsx",
+            "lib/components/sidebar/CategorySidebar.tsx",
+            "lib/utils/game-box-settings.ts",
+            "lib/i18n/locales.ts"
+        ]
+    },
+    "2025-02-21 15": {
+        "version": "2.0.16",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "修复推荐游戏、分类侧边栏没有按语言跳转到对应语言的链接问题"
+        ],
+        "modify": [
+            "app/[locale]/(public)/games/page.tsx",
+            "app/[locale]/(public)/views/GameCard.tsx",
+            "app/[locale]/(public)/views/Recommendation.tsx",
+            "app/not-found.tsx",
+            "lib/components/sidebar/CategorySidebar.tsx"
+        ]
+    },
+    "2025-02-21": {
+        "version": "2.0.15",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "修复过低版本升级到最新模板时，某些文件不存在导致编译报错的问题"
+        ],
+        "modify": [
+            "lib/utils/game-box-settings.ts"
+        ]
+    },
+    "2025-02-20 10": {
+        "version": "2.0.14",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "修复子游戏页面截图获取不正确问题",
+            "更新站点类型定义，解决ts编译报错"
+        ],
+        "modify": [
+            "app/[locale]/(public)/page.tsx",
+            "app/[locale]/(public)/views/Comments.tsx",
+            "app/[locale]/(public)/views/DownloadGame.tsx",
+            "app/[locale]/(public)/views/FAQs.tsx",
+            "app/[locale]/(public)/views/Features.tsx",
+            "app/[locale]/(public)/views/IframeActions.tsx",
+            "app/[locale]/(public)/views/IframeSection.tsx",
+            "app/[locale]/(public)/views/LazyIframe.tsx",
+            "app/[locale]/(public)/views/PopupWindows.tsx",
+            "app/[locale]/(public)/views/RelatedVideo.tsx",
+            "lib/components/games-template/page.tsx",
+            "lib/types/site.ts"
+        ]
+    },
+    "2025-02-20": {
+        "version": "2.0.13",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "修复子游戏页面内容取值不正确的问题"
+        ],
+        "modify": [
+            "app/[locale]/(public)/page.tsx",
+            "lib/components/games-template/page.tsx"
+        ]
+    },
+    "2025-02-19": {
+        "version": "2.0.12",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "优化博客页面和自定义页面构建方式",
+            "优化盒子模板控制菜单显示方式"
+        ],
+        "modify": [
+            "app/[locale]/(public)/blogs/[[...page]]/page.tsx",
+            "app/[locale]/(public)/t/page.tsx",
+            "lib/components/layout/AppLayout.tsx",
+            "lib/config/site.ts",
+            "app/[locale]/(public)/page.tsx",
+            "lib/components/games-template/page.tsx"
+        ]
+    },
+    "2025-02-18 21": {
+        "version": "2.0.11",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "修复编译报错问题"
+        ],
+        "modify": [
+            "lib/context/SidebarContext.tsx"
+        ]
+    },
+    "2025-02-18": {
+        "version": "2.0.10",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "修复盒子模板下页脚显示有空白的问题、分类不显示左侧菜单问题",
+            "修复游戏详情页面游戏名称不加载国际化内容问题",
+            "修复盒子模板左侧按钮无法收缩、移动端下默认设置为折叠状态"
+        ],
+        "modify": [
+            "app/[locale]/(public)/blogs/[[...page]]/page.tsx",
+            "app/[locale]/(public)/page.tsx",
+            "app/[locale]/(public)/t/page.tsx",
+            "i18n.ts",
+            "lib/components/game-category/GameCard.tsx",
+            "lib/components/game-category/GameGroup.tsx",
+            "lib/components/games-template/c/[[...]]/page.tsx",
+            "lib/components/games-template/game-box.tsx",
+            "lib/components/games-template/page.tsx",
+            "lib/components/t-file-page-template.tsx",
+            "lib/context/SidebarContext.tsx"
+        ]
+    },
+    "2025-02-17 18": {
+        "version": "2.0.9",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "解决非游戏盒子模板下页脚显示不正确的问题"
+        ],
+        "modify": [
+            "app/[locale]/(public)/page.tsx",
+            "lib/components/footer.tsx",
+            "lib/components/layout/AppLayout.tsx",
+            "lib/context/SidebarContext.tsx"
+        ]
+    },
+    "2025-02-17": {
+        "version": "2.0.8",
+        "messagesKeyModify": false,
+        "changeLog": [
+            "调整游戏盒子模板侧边栏样式",
+            "解决首页游戏加载不正确问题"
+        ],
+        "add": [
+            "lib/context/SidebarContext.tsx"
+        ],
+        "modify": [
+            "app/[locale]/(public)/layout.tsx",
+            "lib/components/footer.tsx",
+            "lib/components/games-template/c/[[...]]/page.tsx",
+            "lib/components/games-template/game-box.tsx",
+            "lib/components/games-template/page.tsx",
+            "lib/components/layout/AppLayout.tsx",
+            "lib/components/navbar.tsx",
+            "lib/components/sidebar/CategorySidebar.tsx",
+            "lib/types/site.ts",
+            "lib/utils/game-box-settings.ts"
+        ],
+        "delete": [
+            "lib/components/layout/MainLayout.tsx"
+        ]
+    },
     "2025-02-11": {
         "version": "2.0.7",
         "messagesKeyModify": false,
@@ -50,7 +259,6 @@
             "lib/config/themes/forest-theme.json"
         ]
     },
-
     "2025-01-26 12": {
         "version": "2.0.3",
         "messagesKeyModify": false,
@@ -72,7 +280,6 @@
             "lib/components/games-template/page.tsx"
         ]
     },
-
     "2025-01-23": {
         "version": "2.0.1",
         "messagesKeyModify": false,
@@ -99,7 +306,6 @@
             "lib/components/games-template/game-box.tsx",
             "lib/components/games-template/c/[[...]]/page.tsx",
             "lib/components/layout/AppLayout.tsx",
-            "lib/components/layout/MainLayout.tsx",
             "lib/components/sidebar/CategorySidebar.tsx",
             "lib/config/themes/cyberpunk-neon.json",
             "lib/config/themes/dark.json",
@@ -174,9 +380,8 @@
             "resources/game-box/en.json",
             "tailwind.config.ts",
             "package.json"
-          ]
+        ]
     },
-
     "2025-01-22": {
         "version": "1.2.30",
         "messagesKeyModify": false,
@@ -187,7 +392,6 @@
             "i18n.ts"
         ]
     },
-
     "2025-01-14": {
         "version": "1.2.29",
         "messagesKeyModify": false,

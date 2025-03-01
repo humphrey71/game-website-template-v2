@@ -1,7 +1,6 @@
 import path from "path";
 import fs from "fs";
 import { GameBoxSettings, RecommendationItem } from "../types";
-
 /**
  * 获取首页设置
  * @param locale 语言
@@ -10,14 +9,22 @@ export const getHomeSettings = async (locale: string) => {
   let settings: GameBoxSettings = {
     recommended: [],
     categories: [],
+    allGames: []
   };
-
+  const defaultLoclae = 'en';
+  const enSettings = (await import(`@/resources/game-box/${defaultLoclae}.json`)).default as unknown as GameBoxSettings;
   try {
     // 1. 加载基础配置
     try {
-      settings = (await import(`@/resources/game-box/${locale}.json`)).default;
+      settings = (await import(`@/resources/game-box/${locale}.json`)).default  as unknown as GameBoxSettings;
     } catch {
-      settings = (await import(`@/resources/game-box/en.json`)).default as GameBoxSettings;
+      try{
+        // 不可直接写死en,避免编译时，因为文件不存在导致报错。而是采用动态拼接参数
+        settings = (await import(`@/resources/game-box/${defaultLoclae}.json`)).default as unknown as GameBoxSettings;
+      }catch{
+        // 非盒子游戏模板，有可能不存在这个en.json文件，避免报错
+        return settings;
+      }
     }
 
     // 2. 读取games目录下的所有游戏配置
@@ -81,15 +88,28 @@ export const getHomeSettings = async (locale: string) => {
       game.item.position = allGames.length - index; // 位置值越大越靠前
       
       // 将游戏添加到对应的分类中
-      if (Array.isArray(game.config.tags)) {
-        for (const tag of game.config.tags) {
-          const category = settings.categories.find(c => c.path === tag);
+      if (Array.isArray(game.config.categories)) {
+        for (const tag of game.config.categories) {
+          // 根据名字从英文设置当中找到对应的分类，获得分类的path与当前多语言分类的path比较
+          const enCategory = enSettings.categories.find(c => c.name === tag);
+          const category = settings.categories.find(c => c.path === enCategory?.path);
           if (category) {
             if (!category.games) {
               category.games = [];
             }
-            category.games.push(game.item);
+            if(category.games.findIndex((item)=>item.url===game.item.url)==-1){
+              category.games.push(game.item);
+            }
           }
+        }
+      }
+      // 补充推荐游戏需要的属性
+      for (const gameItem of settings.recommended) {
+        if (gameItem.url === game.item.url) {
+          gameItem.cover = game.item.cover;
+          gameItem.title = game.item.title;
+          gameItem.position=game.item.position
+          gameItem.visible=game.item.visible
         }
       }
     });
@@ -97,6 +117,5 @@ export const getHomeSettings = async (locale: string) => {
   } catch (error) {
     console.error('Failed to load game box settings:', error);
   }
-  
   return settings;
 };

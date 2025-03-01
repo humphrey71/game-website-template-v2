@@ -2,14 +2,13 @@
 
 import { LocaleDropdown } from '@/lib/components/locale-dropdown';
 import { siteConfig } from '@/lib/config/site';
-import { getPathname, Link } from '@/lib/i18n/navigation';
+import { Link } from '@/lib/i18n/navigation';
 import { Button } from '@/lib/ui/components/button';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/lib/ui/components/sheet';
 import { cn } from '@/lib/utils/commons';
 import { Menu, ChevronDown, X } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 import { NavbarItem } from '../types';
@@ -145,7 +144,7 @@ export default function AppNavbar({ items }: { items: NavbarItem[] }) {
           >
             <img
               src={logoUrl}
-              className="h-14 w-auto rounded-xl"
+              className="h-10 md:h-14 w-auto rounded-xl"
               alt={`${t('title')} logo`}
               width={20}
               height={20}
@@ -154,11 +153,11 @@ export default function AppNavbar({ items }: { items: NavbarItem[] }) {
                 console.error('Image load failed:', e);
               }}
             />
-            <div className="hidden lg:block">
-            <p className="text-navbar-foreground/80 hover:text-navbar-foreground transition-colors">
-              {t(siteConfig.slogan as any)}
-            </p>
-          </div>
+            <div>
+              <p className="text-navbar-foreground/80 hover:text-navbar-foreground transition-colors">
+                {siteConfig.name as any}
+              </p>
+            </div>
            
           </Link>
         </div>

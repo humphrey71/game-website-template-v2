@@ -12,9 +12,10 @@ import DownloadGame from '@/app/[locale]/(public)/views/DownloadGame';
 import {siteConfig} from '@/lib/config/site';
 import { SiteConfig} from '@/lib/types';
 import GameRecommendationCard from '@/app/[locale]/(public)/views/GameRecommendationCard';
-import CustomizeFeatures from './views/CustomizeFeatures';
+import CustomizeFeatures from '@/app/[locale]/(public)/views/CustomizeFeatures';
+import { AppLayout } from '@/lib/components/layout/AppLayout';
+import { getHomeSettings } from '@/lib/utils/game-box-settings';
 import matter from 'gray-matter';
-export const dynamic = 'force-static'
 type Props = {
   params: Promise<{ locale: string }>;
 };
@@ -44,7 +45,7 @@ export default async function Page({ params }: Props) {
   const { locale = defaultLocale } = await params;
   setRequestLocale(locale);
   const siteConfig2 = siteConfig as unknown as SiteConfig
-  const pageName = null;
+  const pageName = siteConfig2.pageName;
   let features2ContentResult = null;
   if(siteConfig2.customizeFeatures){
     try {
@@ -52,24 +53,24 @@ export default async function Page({ params }: Props) {
       const { content } = matter(Content);
       features2ContentResult = content;
     } catch (error) {
-      // console.warn(`features2 section can not find ${locale}.mdx`, error);
+      console.error(`features2 section can not find ${locale}.mdx`, error);
     }
   }
-  return (
+
+  const PageContent = () => (
     <div className="bg-background pt-5 pb-5">
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row">
           {/* 左侧主要内容区域 */}
           <div className="flex-1 min-w-0">
             <IframeSection pageName={pageName} />
            
-            <div className="px-4">
+            <div>
               <SectionWrapper className="max-full">
-                {siteConfig2.customizeFeatures ? <CustomizeFeatures content={features2ContentResult} /> : <Features pageName={pageName} />}
+                {siteConfig2.customizeFeatures && features2ContentResult? <CustomizeFeatures content={features2ContentResult} /> : <Features pageName={pageName} />}
                 <FAQs locale={locale} pageName={pageName} />
                 <RelatedVideo pageName={pageName} siteConfig={siteConfig2} />
                 <Comments pageName={pageName} siteConfig={siteConfig2} />
-               
               </SectionWrapper>
             </div>
             <Recommendation locale={locale} />
@@ -82,4 +83,15 @@ export default async function Page({ params }: Props) {
       </div>
     </div>
   );
+
+  if (siteConfig.templateType === 'game-box') {
+    const settings = await getHomeSettings(locale);
+    return (
+      <AppLayout categories={settings.categories}>
+        <PageContent />
+      </AppLayout>
+    );
+  }
+
+  return <PageContent />;
 }

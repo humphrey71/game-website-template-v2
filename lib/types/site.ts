@@ -62,6 +62,8 @@ export interface SiteConfig {
   slogan: string;
   // 网站域名
   domain: string
+  pageName?: string;
+  pagePath?: string;
   // 网站图标
   icon: string;
   // iframe || download || redirect
@@ -128,7 +130,9 @@ export interface SiteConfig {
   // 更新时间
   updatedTime?: string | null;
   // 标签
-  tags?:string[]
+  categories?:string[]
+  // 模板类型
+  templateType?:string
 }
 
 export interface GameCategory {
@@ -145,4 +149,5 @@ export interface GameCategory {
 export interface GameBoxSettings{
   recommended: RecommendationItem[]
   categories: GameCategory[]
+  allGames: RecommendationItem[]
 } 
